@@ -15,9 +15,18 @@ def test_quiz_selection():
 
 def test_tank_appearance_quiz_answers():
     # Reads the correct answers of the Tank Appearance Match Quiz from the csv file and store them in variables.
-    tank_appearance_quiz_answers = "tank_quiz_answers.csv"
-    with open(tank_appearance_quiz_answers, "r") as csvfile:
+    # The Tank Role Match Quiz works under the same logic.
+    tank_quiz_answers = "tank_quiz_answers.csv"
+    with open(tank_quiz_answers, "r") as csvfile:
         tank_appearance_quiz_answers_reader = pd.read_csv(csvfile, usecols=["Pic ID", "Tank Name"])
-        for row in tank_appearance_quiz_answers_reader:
-            print(str(row)) # Change this line to store the match answers in dictionary.
-    assert type(str(row)) == str
+    tank_appearance_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict() # Modifies the dataframe to the dict type.
+    assert tank_appearance_quiz_answers_dictionary["Pic ID"][0] == 1 and tank_appearance_quiz_answers_dictionary["Tank Name"][0] == "KV-2"
+
+def test_tank_role_match_quiz_answers():
+    # Reads the correct answers of the Tank Role Match Quiz from the csv file and store them in variables.
+    # Uses the same logic as Tank Appearance Match Quiz.
+    tank_quiz_answers = "tank_quiz_answers.csv"
+    with open(tank_quiz_answers, "r") as csvfile:
+        tank_appearance_quiz_answers_reader = pd.read_csv(csvfile, usecols=["Tank Name", "Tank Class"])
+    tank_appearance_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict() # Modifies the dataframe to the dict type.
+    assert tank_appearance_quiz_answers_dictionary["Tank Name"][0] == "KV-2" and tank_appearance_quiz_answers_dictionary["Tank Class"][0] == "HT"
