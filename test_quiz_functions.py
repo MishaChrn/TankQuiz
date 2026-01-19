@@ -20,7 +20,7 @@ def test_tank_appearance_quiz_answers():
     with open(tank_quiz_answers, "r") as csvfile:
         tank_appearance_quiz_answers_reader = pd.read_csv(csvfile, usecols=["Pic ID", "Tank Name"])
     tank_appearance_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict() # Modifies the dataframe to the dict type.
-    assert tank_appearance_quiz_answers_dictionary["Pic ID"][0] == 1 and tank_appearance_quiz_answers_dictionary["Tank Name"][0] == "KV-2"
+    assert tank_appearance_quiz_answers_dictionary["Pic ID"][0] == "ussr_kv_2" and tank_appearance_quiz_answers_dictionary["Tank Name"][0] == "KV-2"
 
 def test_tank_role_match_quiz_answers():
     # Reads the correct answers of the Tank Role Match Quiz from the csv file and store them in variables.
@@ -31,22 +31,13 @@ def test_tank_role_match_quiz_answers():
     tank_appearance_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict() # Modifies the dataframe to the dict type.
     assert tank_appearance_quiz_answers_dictionary["Tank Name"][0] == "KV-2" and tank_appearance_quiz_answers_dictionary["Tank Class"][0] == "HT"
 
-# def test_read_all_quiz_answers():
-#     # Reads all answer sets and store them in a dictionary.
-#     tank_quiz_answers = "tank_quiz_answers.csv"
-#     with open(tank_quiz_answers, "r") as csvfile:
-#         tank_appearance_quiz_answers_reader = pd.read_csv(csvfile)
-#     all_tank_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict(orient='records') # Modifies the dataframe to the dict type by each row, using the column name as each key.
-#     assert all_tank_quiz_answers_dictionary #???
-
 def test_read_all_quiz_answers():
     # Reads all answer sets and store them in a dictionary.
     tank_quiz_answers = "tank_quiz_answers.csv"
     with open(tank_quiz_answers, "r") as csvfile:
-        tank_appearance_quiz_answers_reader = pd.read_csv(csvfile).set_index("Pic ID", inplace=True)
-        # Where to put .set_index("Pic ID", inplace=True)??
+        tank_appearance_quiz_answers_reader = pd.read_csv(csvfile).set_index("Pic ID") # Uses 'Pic ID' column as an index.
     all_tank_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict(orient='index') # Modifies the dataframe to the dict type by each row, using the column name as each key.
-    assert all_tank_quiz_answers_dictionary["'ussr_kv_2"]["Tank Name"] == "KV-2"
+    assert all_tank_quiz_answers_dictionary["ussr_kv_2"]["Tank Name"] == "KV-2"
 
 """
 一行一意になるはずなので、
