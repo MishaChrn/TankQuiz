@@ -39,6 +39,23 @@ def test_read_all_quiz_answers():
     all_tank_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict(orient='index') # Modifies the dataframe to the dict type by each row, using the column name as each key.
     assert all_tank_quiz_answers_dictionary["ussr_kv_2"]["Tank Name"] == "KV-2"
 
+def test_check_answer_correct(correct_answer, expected_answer):
+    # Lets you know if your answer is correct.
+    if correct_answer == expected_answer: # If your answer is correct, it returns True.
+        assert True
+    else:
+        assert False # If your answer is wrong, it returns False.
+
+def test_check_answer_wrong(answer, expected_answer):
+    # Lets you know if your answer is correct.
+    if wrong_answer == expected_answer: # If your answer is correct, it returns True.
+        assert True
+    else:
+        assert False # If your answer is wrong, it returns False.
+
+# How to use parameters?
+# @pytest.fixture can work to set test parameters?
+
 """
 一行一意になるはずなので、
 ひょっとして一度に全部呼び出してからマッチングの場合ごとに正誤判定させる方が早くて楽？
