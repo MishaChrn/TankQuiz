@@ -39,35 +39,18 @@ def test_read_all_quiz_answers():
     all_tank_quiz_answers_dictionary = tank_appearance_quiz_answers_reader.to_dict(orient='index') # Modifies the dataframe to the dict type by each row, using the column name as each key.
     assert all_tank_quiz_answers_dictionary["ussr_kv_2"]["Tank Name"] == "KV-2"
 
-def test_check_answer_correct(correct_answer, expected_answer):
+@pytest.mark.parametrize("player_answer, expected_answer", [("KV-2", "KV-2"), ("Maus", "KV-2")])
+def test_check_player_answer(player_answer, expected_answer):
     # Lets you know if your answer is correct.
-    if correct_answer == expected_answer: # If your answer is correct, it returns True.
-        assert True
-    else:
-        assert False # If your answer is wrong, it returns False.
-
-def test_check_answer_wrong(answer, expected_answer):
-    # Lets you know if your answer is correct.
-    if wrong_answer == expected_answer: # If your answer is correct, it returns True.
-        assert True
-    else:
-        assert False # If your answer is wrong, it returns False.
-
-# How to use parameters?
-# @pytest.fixture can work to set test parameters?
-
-"""
-一行一意になるはずなので、
-ひょっとして一度に全部呼び出してからマッチングの場合ごとに正誤判定させる方が早くて楽？
-df.to_dict(orient='dict')
-# {'Name': {0: 'Alice', 1: 'Bob', 2: 'Charlie'}, 'Age': {0: 25, 1: 30, 2: 28}, 'City': {0: 'New York', 1: 'London', 2: 'Paris'}}
-
-df.to_dict(orient='list')
-# {'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 28], 'City': ['New York', 'London', 'Paris']}
-
-df.to_dict(orient='records')
-# [{'Name': 'Alice', 'Age': 25, 'City': 'New York'}, {'Name': 'Bob', 'Age': 30, 'City': 'London'}, {'Name': 'Charlie', 'Age': 28, 'City': 'Paris'}]
-
-df.to_dict(orient='index')
-# {0: {'Name': 'Alice', 'Age': 25, 'City': 'New York'}, 1: {'Name': 'Bob', 'Age': 30, 'City': 'London'}, 2: {'Name': 'Charlie', 'Age': 28, 'City': 'Paris'}}
-"""
+    point_earned = 0
+    answers_dictionary = {"ussr_kv_2": {"Tank Name": "KV-2", "Tank Class": "HT"}}
+    expected_answer = answers_dictionary["ussr_kv_2"]["Tank Name"]
+    message_correct = f"Yes! It's {expected_answer}!"
+    message_wrong = f"No. It's {expected_answer}."
+    if player_answer == expected_answer: # If your answer is correct, it increases the point_earned and shows message_correct.
+        point_earned += 1
+        print(message_correct)
+        assert point_earned == 1
+    else: # If your answer is wrong, it doesn't increase the point_earned and shows message_wrong.
+        point_earned += 0
+        assert point_earned == 0
