@@ -54,3 +54,17 @@ def test_check_player_answer(player_answer, expected_answer):
     else: # If your answer is wrong, it doesn't increase the point_earned and shows message_wrong.
         point_earned += 0
         assert point_earned == 0
+
+def test_create_a_random_tank_name_quiz():
+    quiz_quiestions_dictionary = {
+        "ussr_kv_2": {"Tank Name": "KV-2", "Tank Class": "HT"},
+        "usa_sherman_easy_8": {"Tank Name": "Sherman Easy 8", "Tank Class": "MT"}
+    }
+    random_quiz_question = quiz_quiestions_dictionary["*"]
+    assert quiz_quiestions_dictionary["*"]["Tank Name"] == "KV-2" or quiz_quiestions_dictionary["*"]["Tank Name"] == "Sherman Easy 8"
+
+"""
+辞書型のキーをワイルドカードでランダムに呼び出すことは
+できないようなので、以下のrandom()を使う方法を試す
+https://www.choge-blog.com/programming/pythondictionarygetrandomelement/
+"""
