@@ -70,10 +70,10 @@ def test_call_a_random_tank_pic_and_name():
 @pytest.mark.parametrize("question_dictionary", [{"pic_1": {"Tank Name": "Pic 1 Tank", "Tank Class": "Pic 1 Class"}, "pic_2": {"Tank Name": "Pic 2 Tank", "Tank Class": "Pic 2 Class"}, "pic_3": {"Tank Name": "Pic 3 Tank", "Tank Class": "Pic 3 Class"}, "pic_4": {"Tank Name": "Pic 4 Tank", "Tank Class": "Pic 4 Class"}, "pic_5": {"Tank Name": "Pic 5 Tank", "Tank Class": "Pic 5 Class"}}]) # Sample quiz question sets for test purpose.
 def test_create_random_tank_appearance_quiz(question_dictionary):
     # Creates a random tank appearance quiz question.
-    random_question_key_set = {}
+    random_question_key_set = set() # Initialize an empty set.
     for question_key in question_dictionary:
-        # Pops out a random key among the dictionary and stores it in a variable.
-        random_question_key_set.add(question_key) # Stores keys in a set. Set elements never duplicate.
+        # Stores each dictionary key in a set.
+        random_question_key_set.add(question_key) # Stores keys in a set. Set elements never duplicate and have no indices.
     for set_element in random_question_key_set:
         print(f"This is {set_element}.")
     assert set_element in question_dictionary
