@@ -1,5 +1,16 @@
 import csv
 import yaml
+import pandas as pd
+
+
+def quiz_selection():
+    # Reads the Quiz names from the csv file and shows each Quiz name.
+    table_of_contents = "table_of_contents.csv"
+    with open("table_of_contents.csv", "r") as csvfile:
+        table_of_contents_reader = pd.read_csv(csvfile, usecols=["Quiz Content"])
+        for row in table_of_contents_reader["Quiz Content"]:
+            print(row)
+
 
 
 """

@@ -10,7 +10,7 @@ def test_quiz_selection():
     table_of_contents = "table_of_contents.csv"
     with open("table_of_contents.csv", "r") as csvfile:
         table_of_contents_reader = pd.read_csv(csvfile, usecols=["Quiz Content"])
-        for row in table_of_contents_reader:
+        for row in table_of_contents_reader["Quiz Content"]:
             print(row)
     assert type(row) == str
 

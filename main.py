@@ -1,4 +1,4 @@
-
+from quiz_functions import quiz_selection
 
 """
 This is a tank quiz app.
@@ -10,3 +10,9 @@ What can you do with this app:
 5. Tank Trivia: Choose a tank to read about its history.
 """
 
+
+if __name__ == "__main__":
+    try:
+        quiz_selection()
+    except Exception as e:
+        print(e)
