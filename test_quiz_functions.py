@@ -9,10 +9,11 @@ def test_quiz_selection():
     # Reads the Quiz names from the csv file and shows each Quiz name.
     table_of_contents = "table_of_contents.csv"
     with open("table_of_contents.csv", "r") as csvfile:
-        table_of_contents_reader = pd.read_csv(csvfile, usecols=["Quiz Content"])
-        for row in table_of_contents_reader["Quiz Content"]:
-            print(row)
-    assert type(row) == str
+        table_of_contents_reader = pd.read_csv(csvfile)
+    table_of_contents_to_dict = table_of_contents_reader.to_dict(orient="records")
+    assert table_of_contents_to_dict[0]["ID"] == 1
+    assert table_of_contents_to_dict[0]["Quiz Content"] == "Quiz 1"
+    assert table_of_contents_to_dict[0]["Quiz Description"] == "Tank Appearance Match"
 
 def test_tank_appearance_quiz_answers():
     # Reads the correct answers of the Tank Appearance Match Quiz from the csv file and store them in variables.

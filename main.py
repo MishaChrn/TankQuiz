@@ -15,4 +15,4 @@ if __name__ == "__main__":
     try:
         quiz_selection()
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
