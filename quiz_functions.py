@@ -4,19 +4,19 @@ import pandas as pd
 
 
 def quiz_selection():
-    # Reads the Quiz names from the csv file and shows each Quiz name.
+    # Reads the Quiz names from the csv file and shows each Quiz name with its row ID.
     table_of_contents = "table_of_contents.csv"
     with open("table_of_contents.csv", "r") as csvfile:
         table_of_contents_reader = pd.read_csv(csvfile)
     table_of_contents_to_dict = table_of_contents_reader.to_dict(orient="records")
-    for row in table_of_contents_to_dict:
+    for row in range(len(table_of_contents_to_dict)):
         print(f"{table_of_contents_to_dict[row]["ID"]}. {table_of_contents_to_dict[row]["Quiz Content"]}: {table_of_contents_to_dict[row]["Quiz Description"]}")
 
-#Error: list indices must be integers or slices, not dict
+
 
 """
 flow:
-quiz_selection()
+quiz_selection() -OK
 
 input("Select a quiz: ")
 
