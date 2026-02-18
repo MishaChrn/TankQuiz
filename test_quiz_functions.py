@@ -15,6 +15,16 @@ def test_quiz_selection():
     assert table_of_contents_to_dict[0]["Quiz Content"] == "Quiz 1"
     assert table_of_contents_to_dict[0]["Quiz Description"] == "Tank Appearance Match"
 
+@pytest.mark.parametrize("player_input, quiz_to_start", [(1, "KV-2"), ("Maus", "KV-2")])
+def test_start_selected_quiz():
+    # Applies proper column names to create random questions from the table_of_content csv file, depending on user's input.
+    pass
+
+def test_select_quiz_to_start():
+    # Picks out proper column values from the table_of_content csv file, depending on user's input.
+    question_compositions = {1: ("Pic ID", "Tank Name"), 2: ("Tank Name", "Tank Class"), 3: ("Tank Name", "Game Play"), 4: ("Pic ID", "Tank Name", "Tank Class", "Trivia")}
+
+
 def test_tank_appearance_quiz_answers():
     # Reads the correct answers of the Tank Appearance Match Quiz from the csv file and store them in variables.
     # The Tank Role Match Quiz works under the same logic.
