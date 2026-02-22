@@ -20,9 +20,14 @@ def test_start_selected_quiz():
     # Applies proper column names to create random questions from the table_of_content csv file, depending on user's input.
     pass
 
+@pytest.mark.parametrize("player_input, quiz_to_start", [(1, ), (2, ), (3, ), (4, )])
 def test_select_quiz_to_start():
     # Picks out proper column values from the table_of_content csv file, depending on user's input.
-    question_compositions = {1: ("Pic ID", "Tank Name"), 2: ("Tank Name", "Tank Class"), 3: ("Tank Name", "Game Play"), 4: ("Pic ID", "Tank Name", "Tank Class", "Trivia")}
+    question_compositions = {1: ["Pic ID", "Tank Name"], 2: ["Tank Name", "Tank Class"], 3: ["Tank Name", "Game Play"], 4: ["Pic ID", "Tank Name", "Tank Class", "Trivia"]}
+    with open(tank_quiz_answers, "r") as csvfile:
+        tank_quiz_answers_reader = pd.read_csv(csvfile, usecols=[question_compositions[player_input]])
+    tank_quiz_answers_dictionary = tank_quiz_answers_reader.to_dict() # Modifies the dataframe to the dict type.
+
 
 
 def test_tank_appearance_quiz_answers():
