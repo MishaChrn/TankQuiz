@@ -20,15 +20,23 @@ def test_start_selected_quiz():
     # Applies proper column names to create random questions from the table_of_content csv file, depending on user's input.
     pass
 
-@pytest.mark.parametrize("player_input, quiz_to_start", [(1, ), (2, ), (3, ), (4, )])
-def test_select_quiz_to_start():
+@pytest.mark.parametrize("player_input, expected_answers", [(1, ), (2, ), (3, ), (4, )])
+def test_select_quiz_to_start(player_input, expected_answers):
     # Picks out proper column values from the table_of_content csv file, depending on user's input.
     question_compositions = {1: ["Pic ID", "Tank Name"], 2: ["Tank Name", "Tank Class"], 3: ["Tank Name", "Game Play"], 4: ["Pic ID", "Tank Name", "Tank Class", "Trivia"]}
     with open(tank_quiz_answers, "r") as csvfile:
         tank_quiz_answers_reader = pd.read_csv(csvfile, usecols=[question_compositions[player_input]])
     tank_quiz_answers_dictionary = tank_quiz_answers_reader.to_dict() # Modifies the dataframe to the dict type.
-
-
+    # Creates a random tank quiz question.
+    random_question_key_set = set() # Initialize an empty set.
+    for question_key in tank_quiz_answers_dictionary:
+        # Stores each dictionary key in a set.
+        random_question_key_set.add(question_key)
+    # Pops a random element from the random_question_key_set and stores it in a random_quiz_value.
+    random_quiz_value = random_question_key_set.pop()
+    # Applies the random_quiz_variable to tank_quiz_answers_dictionary and identifies the corresponding question answers.
+    correct_answers = tank_quiz_answers_dictionary[random_quiz_value]
+    assert correct_answers in expected_answers
 
 def test_tank_appearance_quiz_answers():
     # Reads the correct answers of the Tank Appearance Match Quiz from the csv file and store them in variables.
