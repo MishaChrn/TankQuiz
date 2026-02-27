@@ -15,18 +15,19 @@ def test_quiz_selection():
     assert table_of_contents_to_dict[0]["Quiz Content"] == "Quiz 1"
     assert table_of_contents_to_dict[0]["Quiz Description"] == "Tank Appearance Match"
 
-@pytest.mark.parametrize("player_input, quiz_to_start", [(1, "KV-2"), ("Maus", "KV-2")])
-def test_start_selected_quiz():
-    # Applies proper column names to create random questions from the table_of_content csv file, depending on user's input.
-    pass
+# @pytest.mark.parametrize("player_input, quiz_to_start", [(1, "KV-2"), ("Maus", "KV-2")])
+# def test_start_selected_quiz():
+#     # Applies proper column names to create random questions from the table_of_content csv file, depending on user's input.
+#     pass
 
-@pytest.mark.parametrize("player_input, expected_answers", [(1, ), (2, ), (3, ), (4, )])
+@pytest.mark.parametrize("player_input, expected_answers", [(1, ["KV-2", "M4A3E8", "IS-3", "Leopard 1"]), (2, 1), (3, 1), (4, 1)])
 def test_select_quiz_to_start(player_input, expected_answers):
     # Picks out proper column values from the table_of_content csv file, depending on user's input.
+    tank_quiz_answers = "tank_quiz_answers.csv"
     question_compositions = {1: ["Pic ID", "Tank Name"], 2: ["Tank Name", "Tank Class"], 3: ["Tank Name", "Game Play"], 4: ["Pic ID", "Tank Name", "Tank Class", "Trivia"]}
     with open(tank_quiz_answers, "r") as csvfile:
-        tank_quiz_answers_reader = pd.read_csv(csvfile, usecols=[question_compositions[player_input]])
-    tank_quiz_answers_dictionary = tank_quiz_answers_reader.to_dict() # Modifies the dataframe to the dict type.
+        tank_quiz_answers_reader = pd.read_csv(csvfile, usecols=question_compositions[player_input])
+    tank_quiz_answers_dictionary = tank_quiz_answers_reader.to_dict(orient='index') # Modifies the dataframe to the dict type.
     # Creates a random tank quiz question.
     random_question_key_set = set() # Initialize an empty set.
     for question_key in tank_quiz_answers_dictionary:
