@@ -1,4 +1,4 @@
-from quiz_functions import quiz_selection
+from quiz_functions import quiz_selection, select_quiz_to_start
 
 """
 This is a tank quiz app.
@@ -14,5 +14,12 @@ What can you do with this app:
 if __name__ == "__main__":
     try:
         quiz_selection()
+    except Exception as e:
+        print(f"Error: {e}")
+
+    selected_quiz = int(input("Enter the quiz index you want to start: "))
+
+    try:
+        select_quiz_to_start(selected_quiz)
     except Exception as e:
         print(f"Error: {e}")
