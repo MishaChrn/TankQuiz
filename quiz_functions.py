@@ -24,13 +24,23 @@ def select_quiz_to_start(player_input):
     for question_key in tank_quiz_answers_dictionary:
         # Stores each dictionary key in a set.
         random_question_key_set.add(question_key)
-# show question_key as a quiz and pop it from the set, input players answer, check if it's correct
+    return random_question_key_set
 
-def check_correct_answer(tank_quiz_answers_dictionary, random_question_key_set, player_answer):
-    # Pops a random element from the random_question_key_set and stores it in a random_quiz_value.
+def show_quiz(random_question_key_set):
+    # Pops a stored question_key and stores it in a new variable.
     random_quiz_value = random_question_key_set.pop()
-    # Applies the random_quiz_variable to tank_quiz_answers_dictionary and identifies the corresponding question answers.
-    correct_answers = tank_quiz_answers_dictionary[random_quiz_value]
+    # Shows a popped question_key as a quiz.
+    print(random_quiz_value)
+    return random_quiz_value
+
+def check_correct_answer(tank_quiz_answers_dictionary, random_quiz_value, player_answer):
+    # Applies the random_quiz_value to tank_quiz_answers_dictionary and identifies the corresponding question answers.
+    correct_answers = tank_quiz_answers_dictionary[random_quiz_value]["Tank Name"]
+    # Receives player's answer and checks if it's correct.
+    if player_answer == correct_answers:
+        print("Correct!")
+    else:
+        print("Incorrect!")
 # check if player_answer==tank_quiz_answers_dictionary[random_quiz_value]["Tank Name"]
 
 
