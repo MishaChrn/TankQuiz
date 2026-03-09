@@ -33,15 +33,24 @@ def show_quiz(random_question_key_set):
     print(random_quiz_value)
     return random_quiz_value
 
-def check_correct_answer(tank_quiz_answers_dictionary, random_quiz_value, player_answer):
+def check_correct_answer(tank_quiz_answers_dictionary, random_quiz_value, player_answer, player_input):
+    question_compositions = {1: ["Pic ID", "Tank Name"], 2: ["Tank Name", "Tank Class"], 3: ["Tank Name", "Game Play"],
+                             4: ["Pic ID", "Tank Name", "Tank Class", "Trivia"]}
     # Applies the random_quiz_value to tank_quiz_answers_dictionary and identifies the corresponding question answers.
-    correct_answers = tank_quiz_answers_dictionary[random_quiz_value]["Tank Name"]
+    if player_input == 1:
+        correct_answer = tank_quiz_answers_dictionary[random_quiz_value]["Tank Name"]
+    elif player_input == 2:
+        correct_answer = tank_quiz_answers_dictionary[random_quiz_value]["Tank Class"]
+    elif player_input == 3:
+        correct_answer = tank_quiz_answers_dictionary[random_quiz_value]["Game Play"]
+    else:
+        pass
     # Receives player's answer and checks if it's correct.
-    if player_answer == correct_answers:
+    if player_answer == correct_answer:
         print("Correct!")
     else:
         print("Incorrect!")
-# check if player_answer==tank_quiz_answers_dictionary[random_quiz_value]["Tank Name"]
+
 
 
 """
