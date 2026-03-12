@@ -15,10 +15,15 @@ def test_quiz_selection():
     assert table_of_contents_to_dict[0]["Quiz Content"] == "Quiz 1"
     assert table_of_contents_to_dict[0]["Quiz Description"] == "Tank Appearance Match"
 
-# @pytest.mark.parametrize("player_input, quiz_to_start", [(1, "KV-2"), ("Maus", "KV-2")])
-# def test_start_selected_quiz():
-#     # Applies proper column names to create random questions from the table_of_content csv file, depending on user's input.
-#     pass
+@pytest.mark.parametrize(
+    "random_question_key_set, expected_value",
+    [([{"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"}, {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}],
+    ["ussr_kv_2", "usa_m4a3e8", "ussr_is_3", "germany_leopard_1"])]
+)
+def test_show_quiz(random_question_key_set, expected_value):
+    # Pops a stored question_key and stores it in a new variable.
+    random_quiz_value = random_question_key_set.pop()
+    assert expected_value.count(random_quiz_value["Pic ID"]) == 1
 
 @pytest.mark.parametrize("player_input, expected_answers", [
     (1, [{"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"}, {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}]),
@@ -107,5 +112,4 @@ def test_create_random_tank_appearance_quiz(question_dictionary):
     for set_element in random_question_key_set:
         print(f"This is {set_element}.")
     assert set_element in question_dictionary
-
 

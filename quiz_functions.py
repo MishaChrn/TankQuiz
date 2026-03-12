@@ -30,7 +30,7 @@ def show_quiz(random_question_key_set):
     # Pops a stored question_key and stores it in a new variable.
     random_quiz_value = random_question_key_set.pop()
     # Shows a popped question_key as a quiz.
-    print(random_quiz_value)
+    print(random_quiz_value["Pic ID"])
     return random_quiz_value
 
 def check_correct_answer(tank_quiz_answers_dictionary, random_quiz_value, player_answer, player_input):
