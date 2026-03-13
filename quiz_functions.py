@@ -26,6 +26,8 @@ def select_quiz_to_start(player_input):
         random_question_key_set.add(question_key)
     return random_question_key_set
 
+# I want this function to be able to change the key name
+# mentioned in random_quiz_value["Pic ID"], based on the player_input
 def show_quiz(random_question_key_set):
     # Pops a stored question_key and stores it in a new variable.
     random_quiz_value = random_question_key_set.pop()
@@ -33,16 +35,17 @@ def show_quiz(random_question_key_set):
     print(random_quiz_value["Pic ID"])
     return random_quiz_value
 
-def check_correct_answer(tank_quiz_answers_dictionary, random_quiz_value, player_answer, player_input):
+# I don't want to list up if-elif statements in this function
+def check_correct_answer(random_quiz_value, player_answer, player_input):
     question_compositions = {1: ["Pic ID", "Tank Name"], 2: ["Tank Name", "Tank Class"], 3: ["Tank Name", "Game Play"],
                              4: ["Pic ID", "Tank Name", "Tank Class", "Trivia"]}
     # Applies the random_quiz_value to tank_quiz_answers_dictionary and identifies the corresponding question answers.
     if player_input == 1:
-        correct_answer = tank_quiz_answers_dictionary[random_quiz_value]["Tank Name"]
+        correct_answer = random_quiz_value["Tank Name"]
     elif player_input == 2:
-        correct_answer = tank_quiz_answers_dictionary[random_quiz_value]["Tank Class"]
+        correct_answer = random_quiz_value["Tank Class"]
     elif player_input == 3:
-        correct_answer = tank_quiz_answers_dictionary[random_quiz_value]["Game Play"]
+        correct_answer = random_quiz_value["Game Play"]
     else:
         pass
     # Receives player's answer and checks if it's correct.
