@@ -47,6 +47,7 @@ def check_correct_answer(random_quiz_value, player_answer, player_input):
     elif player_input == 3:
         correct_answer = random_quiz_value["Game Play"]
     else:
+        # Needs Tank Trivia display function and if == 4 option.
         pass
     # Receives player's answer and checks if it's correct.
     if player_answer == correct_answer:

@@ -27,8 +27,11 @@ def test_show_quiz(random_question_key_set, expected_value):
 
 @pytest.mark.parametrize(
     "random_quiz_value, player_answer, player_input",
-    [({"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, "KV-2", 1)]
-    # Add more variations for player_input == from 2 to 3
+    [
+	({"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, "KV-2", 1),
+	({"Tank Name": "KV-2", "Tank Class": "HT"}, "HT", 2),
+	({"Tank Name": "KV-2", "Game Play": "Peek-A-Boo, Hit & Run, Circle Of Death, 1 vs 1 brawl."}, "Peek-A-Boo, Hit & Run, Circle Of Death, 1 vs 1 brawl.", 3)
+	]
 )
 def test_check_correct_answer(random_quiz_value, player_answer, player_input):
     question_compositions = {1: ["Pic ID", "Tank Name"], 2: ["Tank Name", "Tank Class"], 3: ["Tank Name", "Game Play"],
@@ -42,6 +45,7 @@ def test_check_correct_answer(random_quiz_value, player_answer, player_input):
         correct_answer = random_quiz_value["Game Play"]
     else:
         pass
+    assert player_answer == correct_answer
 
 @pytest.mark.parametrize("player_input, expected_answers", [
     (1, [{"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"}, {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}]),
