@@ -35,6 +35,14 @@ def show_quiz(random_question_key_set):
     print(random_quiz_value["Pic ID"])
     return random_quiz_value
 
+def create_random_answer_dict(random_question_key_set, random_quiz_value):
+    random_answer_set = set() #Should be dict
+    for question_key in range(3):
+        random_answer_set.add(random_quiz_value[question_key]["Tank Name"])
+    else:
+        random_answer_set.add(random_quiz_value["Tank Name"])
+    print(random_answer_set)
+
 # I don't want to list up if-elif statements in this function
 def check_correct_answer(random_quiz_value, player_answer, player_input):
     question_compositions = {1: ["Pic ID", "Tank Name"], 2: ["Tank Name", "Tank Class"], 3: ["Tank Name", "Game Play"],
