@@ -26,6 +26,25 @@ def test_show_quiz(random_question_key_set, expected_value):
     assert expected_value.count(random_quiz_value["Pic ID"]) == 1
 
 @pytest.mark.parametrize(
+    "random_quiz_value, expected_answer",
+    [([{"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"}, {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}],
+    ["KV-2", "M4A3E8", "IS-3", "Leopard 1"])]
+)
+def test_create_random_answer_dict(random_quiz_value, expected_answer_dict):
+    random_answer_set = set()
+    random_answer_dict = dict()
+    for question_option in range(3):
+        random_answer_set.add(random_quiz_value[question_option]["Tank Name"])
+    else:
+        random_answer_set.add(random_quiz_value["Tank Name"])
+    for question_key in range(random_answer_set):
+        random_answer_dict[question_key] = random_answer_set.pop()
+    else:
+        assert type(random_answer_dict) is dict
+        assert 1 in random_answer_dict
+        assert expected_answer in
+
+@pytest.mark.parametrize(
     "random_quiz_value, player_answer, player_input",
     [
 	({"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, "KV-2", 1),

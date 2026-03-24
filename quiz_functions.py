@@ -35,7 +35,7 @@ def show_quiz(random_question_key_set):
     print(random_quiz_value["Pic ID"])
     return random_quiz_value
 
-def create_random_answer_dict(random_question_key_set, random_quiz_value):
+def create_random_answer_dict(random_quiz_value):
     random_answer_set = set()
     random_answer_dict = dict()
     for question_option in range(3):
