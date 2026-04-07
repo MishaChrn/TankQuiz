@@ -34,18 +34,19 @@ def show_quiz(random_question_key_set):
     # Shows a popped question_key as a quiz.
     print(random_quiz_value["Pic ID"])
     return random_quiz_value
-
-# def create_random_answer_dict(random_question_key_set, random_quiz_value):
-#     random_answer_set = set()
-#     random_answer_dict = dict()
-#     for question_option in range(3):
-#         random_answer_set.add(random_question_key_set[question_option]["Tank Name"])
-#     else:
-#         random_answer_set.add(random_quiz_value["Tank Name"])
-#     for question_key in range(random_answer_set):
-#         random_answer_dict[question_key] = random_answer_set.pop()
-#     else:
-#         print(random_answer_dict)
+def create_random_answer_dict(random_question_key_set, random_quiz_value):
+    random_answer_set = set()
+    random_answer_dict = dict()
+    question_index = 1
+    for question_option in range(3):
+        random_answer_set.add(random_question_key_set[question_option]["Tank Name"])
+    else:
+        random_answer_set.add(random_quiz_value["Tank Name"])
+    for question_key in random_answer_set:
+        random_answer_dict[question_index] = question_key
+        print(f"{question_index}: {random_answer_dict[question_index]}")
+        question_index += 1
+    return random_answer_dict
 
 # I don't want to list up if-elif statements in this function
 def check_correct_answer(random_quiz_value, player_answer, player_input):

@@ -27,15 +27,14 @@ def test_show_quiz(random_question_key_set, expected_value):
 
 @pytest.mark.parametrize(
     "random_question_key_set, random_quiz_value, expected_answer_dict_value",
-    [([{"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"},
+    [([{"Pic ID": "swd_emil_i", "Tank Name": "Emil I"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"},
        {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}],
       {"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, "KV-2"),
      ([{"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"},
-       {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}],
+       {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "cz_skoda_t_25", "Tank Name": "Škoda T 25"}],
       {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}, "Leopard 1"),
      ([{"Pic ID": "ussr_kv_2", "Tank Name": "KV-2"}, {"Pic ID": "usa_m4a3e8", "Tank Name": "M4A3E8"},
-       {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"},
-       {"Pic ID": "usa_m_iii_yoh", "Tank Name": "M-III-Yoh"}],
+       {"Pic ID": "ussr_is_3", "Tank Name": "IS-3"}, {"Pic ID": "usa_m_iii_yoh", "Tank Name": "M-III-Yoh"}],
       {"Pic ID": "germany_leopard_1", "Tank Name": "Leopard 1"}, "Leopard 1")]
 )
 def test_create_random_answer_dict(random_question_key_set, random_quiz_value, expected_answer_dict_value):
